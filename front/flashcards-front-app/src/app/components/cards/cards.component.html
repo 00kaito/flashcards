@@ -1,0 +1,11 @@
+<ng-container>
+  <app-flashcard *ngIf="isQuizMode === 1"
+                 [flashcard]="selectedFlashcard"
+                 [flashcardsSize]="flashcardsSize"
+                 (selectedIndex)="getFlashcardByIndex($event)"
+  >
+  </app-flashcard>
+  <app-quiz *ngIf="isQuizMode === 0 && flashcards"
+            [flashcards]="flashcards"
+  ></app-quiz>
+</ng-container>

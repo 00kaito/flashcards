@@ -1,0 +1,15 @@
+<div class="dialogue-test">
+  <h2>Complete the Dialogues</h2>
+  <div *ngFor="let dialogue of dialogues; let i = index">
+    <div class="dialogue">
+      <p>A: {{ dialogue.A1 }}</p>
+      <p>B: {{ dialogue.B }}</p>
+      <p>A: {{ dialogue.A2 }}</p>
+      <select [(ngModel)]="userResponses[i]"
+              [ngClass]="{'correct': results && results[i] === 'Correct', 'incorrect': results && results[i] === 'Incorrect'}">
+        <option *ngFor="let option of gapOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  </div>
+  <button (click)="checkAnswers()">Check Answers</button>
+</div>

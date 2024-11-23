@@ -1,0 +1,111 @@
+<div class="flashcard-container">
+  <mat-card class="flashcard">
+    <div class="header">
+      <div class="top-right-element">
+        {{ flashcard.rating + " / 5" }}
+      </div>
+    </div>
+    <div *ngIf="!isUpsideDown" class="front">
+      <h3>{{ flashcard.front }}</h3>
+      <p>{{ flashcard.frontSentence }}</p>
+    </div>
+    <div *ngIf="isUpsideDown" class="back">
+      <h3>{{ flashcard.back }}</h3>
+      <p>{{ flashcard.backSentence }}</p>
+    </div>
+    <div *ngIf="!loading">
+      <div *ngIf="checkGrammarResponse.result === true">
+        <mat-icon class="done">done</mat-icon>
+      </div>
+      <div *ngIf="checkGrammarResponse.result === false">
+        <mat-icon class="error">close</mat-icon>
+      </div>
+    </div>
+    <div class="container">
+      <form
+        [formGroup]="flashcardForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <div class="form-group">
+          <p class="error-explanation">{{ checkGrammarResponse.type }}</p>
+          <p class="error-explanation">
+            {{ checkGrammarResponse.explanation }}
+          </p>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Enter Sentence</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="sentence"
+              minlength="4"
+              required
+            />
+          </mat-form-field>
+          <ng-container *ngIf="checkGrammarResponse.result != null">
+            <p>{{ this.flashcard.front }}</p>
+            <p>{{ this.flashcard.synonyms }}</p>
+            <p>{{ this.flashcard.frontSentence }}</p>
+          </ng-container>
+        </div>
+        <div *ngIf="checkGrammarResponse.result != null; else sendButton">
+          <button
+            mat-flat-button
+            type="submit"
+            color="warn"
+            (click)="setClickedButton('1')"
+          >
+            To repeat
+          </button>
+          <button
+            mat-flat-button
+            type="submit"
+            color="primary"
+            (click)="setClickedButton('3')"
+          >
+            To repeat
+          </button>
+          <button
+            mat-flat-button
+            type="submit"
+            color="success"
+            (click)="setClickedButton('5')"
+          >
+            I know
+          </button>
+        </div>
+        <ng-template #sendButton>
+          <button
+            mat-flat-button
+            type="submit"
+            color="primary"
+            [disabled]="!flashcardForm.valid"
+            (click)="setClickedButton('send')"
+          >
+            SEND
+          </button>
+        </ng-template>
+
+        <!--navigation buttons-->
+        <button
+          mat-flat-button
+          (click)="showNextCart()"
+        >
+          Next
+        </button>
+        <button
+          mat-flat-button
+          (click)="showPreviousCart()"
+        >
+          Previous
+        </button>
+        <button
+          mat-flat-button
+          (click)="flipCart()"
+        >
+          Flip
+        </button>
+      </form>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,30 @@
+<div class="bottom-bar">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span>Quiz Mode</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Tutorials"
+      >assignment
+      </mat-icon>
+      <input
+        type="checkbox"
+        [(ngModel)]="learningIsOn"
+        (change)="toggleLearningMode()"
+      />
+
+      <span>Level filter</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Tutorials"
+      >assignment
+      </mat-icon>
+      <mat-select
+        class="select-level"
+        (selectionChange)="showFlashcardsByGrade($event)"
+      >
+        <mat-option *ngFor="let lvl of rating" [value]="lvl">{{
+          lvl
+          }}</mat-option>
+      </mat-select>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

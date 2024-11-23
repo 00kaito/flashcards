@@ -1,0 +1,18 @@
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* Change this to your desired background color */
+  color: #fff; /* Change this to your desired text color */
+  text-align: center; /* Center-align text */
+  padding: 10px 0; /* Add padding to the top and bottom */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  z-index: 1000; /* Ensure the bar is on top of other elements */
+}
+
+
+.select-level {
+  width: 100px;
+  border: 1px dashed black;
+}
